@@ -1,12 +1,15 @@
-name: atividade
 services:
   web:
-    build: .
+    image: nginx
     ports:
-      - 8080:8080
-    depends_on: [banco]
+      - 8080:80
+    restart: always  # <-- reinício automático incluído
+    depends_on:
+      - banco
+
   banco:
     image: mariadb
+    restart: always  # <-- reinício automático incluído
     environment:
       MARIADB_USER: sa
       MARIADB_PASSWORD: password
