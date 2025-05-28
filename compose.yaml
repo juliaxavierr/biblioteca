@@ -1,0 +1,18 @@
+name: atividade
+services:
+  web:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on: [banco]
+  banco:
+    image: mariadb
+    environment:
+      MARIADB_USER: sa
+      MARIADB_PASSWORD: password
+      MARIADB_DATABASE: demodb
+      MARIADB_ROOT_PASSWORD: 12345
+    expose:
+      - 3306
+    volumes:
+      - ~/data:/var/lib/mysql
